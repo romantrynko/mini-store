@@ -1,0 +1,11 @@
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    position: sticky;
+    width: 100%;
+    align-items: center;
+    height: 80px;
+    padding: 0 10vw;
+    box-sizing: border-box;
+}
