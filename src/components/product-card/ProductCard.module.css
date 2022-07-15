@@ -1,0 +1,32 @@
+.product_card {
+margin: 10px 0;
+    height: 250px;
+    width: 220px;
+    box-sizing: border-box;
+    background: gray;
+    display: flex;
+}
+
+.product_card_body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+.product_card_image {
+    width: fit-content;
+    overflow: hidden
+}
+
+.product_card_image img{
+    width: 100%;
+    height: 100%
+}
+
+.product_card_info {}
+
+.product_card_info_name {}
+
+.product_card_info_price {}

@@ -7,25 +7,22 @@ export default class CategoryPanel extends Component {
     return (
       <div className={cl.cat_panel}>
         <NavLink
-          exact={true}
-          to={'/'}
-          activeClassName={cl.active}
+          to={'/home'}
+          activeclassname={cl.active}
           className={cl.cat_panel_link}
         >
           WOMEN
         </NavLink>
         <NavLink
-          exact={true}
           to={'/'}
-          activeClassName={cl.active}
+          activeclassname={cl.active}
           className={cl.cat_panel_link}
         >
           MEN
         </NavLink>
         <NavLink
-          exact={true}
           to={'/'}
-          activeClassName={cl.active}
+          activeclassname={cl.active}
           className={cl.cat_panel_link}
         >
           KIDS

@@ -2,23 +2,22 @@ import logo from './logo.svg';
 import './App.css';
 import Header from './components/header/Header';
 import { Route, Routes } from 'react-router';
-import MainPage from './components/main-page/MainPage';
 import Cart from './components/cart/Cart';
 import CategoryPage from './components/category-page/CategoryPage';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
   return (
     <div className="App">
-      <MainPage>
+      <BrowserRouter>
         <Header />
-      
 
         <Routes>
-          <Route to={"/"} element={<CategoryPage />} />
+          <Route path={'/home'} element={<CategoryPage />} />
           {/* <Route to="/cart" element={<Cart />} />
         <Route to="/category?=:cat" element={<MainPage />} /> */}
         </Routes>
-      </MainPage>
+      </BrowserRouter>
     </div>
   );
 }
