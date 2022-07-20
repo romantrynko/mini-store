@@ -10,10 +10,12 @@ import { gql, useQuery } from '@apollo/client';
 import { Categories, Currencies, Category, Products } from './Queries';
 import { useEffect, useState } from 'react';
 import { ClickProvider } from './ClickContext';
+import ProductPage from './components/product-page/ProductPage';
 
 function App() {
   const [products, setProducts] = useState([]);
-  const [catName, setCatName] = useState('');
+  const [catName, setCatName] = useState('All');
+  const [product, setProduct] = useState(null);
 
   const {
     loading: categoriesLoading,
@@ -80,6 +82,13 @@ function App() {
     }
   };
 
+  const onProductClick = (props) => {
+    // e.stopPropagation();
+    console.log(props);
+
+    // setProduct(product);
+  };
+
   return (
     <ClickProvider value={onClick}>
       <div className="App">
@@ -90,9 +99,19 @@ function App() {
             {products && (
               <Route
                 path={'/'}
-                element={<CategoryPage products={products} catName={catName} />}
+                element={
+                  <CategoryPage
+                    products={products}
+                    catName={catName}
+                    onProductClick={onProductClick}
+                  />
+                }
               />
             )}
+            <Route
+              path={'/a'}
+              element={<ProductPage product={product} catName={catName} />}
+            />
             {/* /* <Route to="/cart" element={<Cart />} /> */}
           </Routes>
         </BrowserRouter>

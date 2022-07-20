@@ -5,7 +5,6 @@ import { useQuery } from '@apollo/client';
 import { Categories, Category } from '../../Queries';
 
 export default function CategoryPanel({ data }) {
- 
   // const { loading, error, data } = useQuery(Categories);
   // console.log(data.categories);
   // useEffect(() => {
@@ -21,14 +20,15 @@ export default function CategoryPanel({ data }) {
         return (
           <div className={cl.cat_panel}>
             {data &&
-              data.categories.map((el) => {
+              data.categories.map((el, index) => {
                 const name = el.name.toUpperCase();
-                // console.log(el.name);
+
                 return (
                   <button
                     onClick={(e) => onClick(e)}
                     className={cl.cat_panel_link}
                     value={el.name}
+                    key={index}
                   >
                     {name}
                   </button>

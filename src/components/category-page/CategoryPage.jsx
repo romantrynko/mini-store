@@ -4,7 +4,7 @@ import cl from './CategoryPage.module.css';
 
 export default class CategoryPage extends Component {
   render() {
-    const { products, catName } = this.props;
+    const { products, catName, onProductClick } = this.props;
     const name = catName.charAt(0).toUpperCase() + catName.slice(1);
 
     return (
@@ -15,7 +15,14 @@ export default class CategoryPage extends Component {
         <div className={cl.cat_page_body}>
           {products &&
             products.map((product, index) => {
-              return <ProductCard product={product} key={index} />;
+              return (
+                <ProductCard
+                  product={product}
+                  index={index}
+                  key={index}
+                  onProductClick={onProductClick}
+                />
+              );
             })}
         </div>
       </div>
