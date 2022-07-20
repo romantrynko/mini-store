@@ -13,6 +13,7 @@ import { ClickProvider } from './ClickContext';
 
 function App() {
   const [products, setProducts] = useState([]);
+  const [catName, setCatName] = useState('');
 
   const {
     loading: categoriesLoading,
@@ -43,26 +44,35 @@ function App() {
       const data = categoriesData.categories[0].products;
 
       setProducts(data);
+      return;
     }
   }, [categoriesData]);
 
   const onClick = (e) => {
     const categoryName = e.target.value;
+    setCatName(categoryName);
 
     switch (categoryName) {
-      case 'All':
+      case 'all':
         console.log('All was chosen');
+        const all = categoriesData.categories[0].products;
 
+        setProducts(all);
         break;
 
-      case 'Tech':
-        console.log('Tech was chosen');
-
-        break;
-
-      case 'Clothes':
+      case 'clothes':
         console.log('Clothes was chosen');
+        const clothes = categoriesData.categories[1].products;
 
+        setProducts(clothes);
+
+        break;
+
+      case 'tech':
+        console.log('Tech was chosen');
+        const tech = categoriesData.categories[2].products;
+
+        setProducts(tech);
         break;
 
       default:
@@ -71,16 +81,16 @@ function App() {
   };
 
   return (
-    <ClickProvider Provider value={onClick}>
+    <ClickProvider value={onClick}>
       <div className="App">
         <BrowserRouter>
-          <Header />
+          <Header data={categoriesData} />
 
           <Routes>
             {products && (
               <Route
                 path={'/'}
-                element={<CategoryPage products={products} />}
+                element={<CategoryPage products={products} catName={catName} />}
               />
             )}
             {/* /* <Route to="/cart" element={<Cart />} /> */}

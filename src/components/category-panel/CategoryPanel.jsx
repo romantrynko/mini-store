@@ -1,40 +1,64 @@
-import React, { Component } from 'react';
+import React, { Component, useEffect, useState } from 'react';
 import cl from './CategoryPanel.module.css';
 import { ClickConsumer } from '../../ClickContext';
+import { useQuery } from '@apollo/client';
+import { Categories, Category } from '../../Queries';
 
-export default class CategoryPanel extends Component {
-  render() {
-    return (
-      <ClickConsumer>
-        {(props) => {
-          const onClick = props;
-          return (
-            <div className={cl.cat_panel}>
-              <button
-                onClick={(e) => onClick(e)}
-                className={cl.cat_panel_link}
-                value="All"
-              >
-                All
-              </button>
-              <button
-                onClick={(e) => onClick(e)}
-                className={cl.cat_panel_link}
-                value="Tech"
-              >
-                Tech
-              </button>
-              <button
-                onClick={(e) => onClick(e)}
-                className={cl.cat_panel_link}
-                value="Clothes"
-              >
-                Clothes
-              </button>
-            </div>
-          );
-        }}
-      </ClickConsumer>
-    );
-  }
+export default function CategoryPanel({ data }) {
+ 
+  // const { loading, error, data } = useQuery(Categories);
+  // console.log(data.categories);
+  // useEffect(() => {
+  //   if (data) setCategories(data);
+  //   console.log(categories);
+  // }, [data]);
+
+  return (
+    <ClickConsumer>
+      {(props) => {
+        const onClick = props;
+
+        return (
+          <div className={cl.cat_panel}>
+            {data &&
+              data.categories.map((el) => {
+                const name = el.name.toUpperCase();
+                // console.log(el.name);
+                return (
+                  <button
+                    onClick={(e) => onClick(e)}
+                    className={cl.cat_panel_link}
+                    value={el.name}
+                  >
+                    {name}
+                  </button>
+                );
+              })}
+
+            {/* <button
+              onClick={(e) => onClick(e)}
+              className={cl.cat_panel_link}
+              value="All"
+            >
+              All
+            </button>
+            <button
+              onClick={(e) => onClick(e)}
+              className={cl.cat_panel_link}
+              value="Tech"
+            >
+              Tech
+            </button>
+            <button
+              onClick={(e) => onClick(e)}
+              className={cl.cat_panel_link}
+              value="Clothes"
+            >
+              Clothes
+            </button> */}
+          </div>
+        );
+      }}
+    </ClickConsumer>
+  );
 }

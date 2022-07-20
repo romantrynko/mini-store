@@ -4,12 +4,13 @@ import cl from './CategoryPage.module.css';
 
 export default class CategoryPage extends Component {
   render() {
-    const { products } = this.props;
+    const { products, catName } = this.props;
+    const name = catName.charAt(0).toUpperCase() + catName.slice(1);
 
     return (
       <div className={cl.cat_page}>
         <div className={cl.cat_page_header} style={{ height: '100px' }}>
-          Category name
+          {name}
         </div>
         <div className={cl.cat_page_body}>
           {products &&

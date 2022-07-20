@@ -25,13 +25,14 @@
     flex-grow: 0;
     border: none;
     background: none;
+    cursor: pointer;
 }
 
 .cat_panel_link:active {
-
     color: #5ECE7B;
     border-bottom: 1px solid #5ECE7B;
     font-weight: bold;
+
 }
 
 .cat_panel_link:hover {
@@ -39,5 +40,3 @@
     border-bottom: 1px solid green;
     font-weight: bold;
 }
-
-.active {}

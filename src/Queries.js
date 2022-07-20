@@ -44,7 +44,7 @@ export const Categories = gql`
 `;
 
 export const Category = gql`
-  query getCategories {
+  query getCategory {
     category {
       name
       products {

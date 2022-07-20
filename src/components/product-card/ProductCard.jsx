@@ -5,7 +5,7 @@ import image from '../../assets/picture.jpeg';
 export default class ProductCard extends Component {
   render() {
     const { product } = this.props;
-    console.log(product);
+    // console.log(product);
 
     return (
       <div className={cl.product_card}>
