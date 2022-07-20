@@ -3,7 +3,20 @@
     margin: 0 auto;
 }
 
-.cat_page_header {}
+.cat_page_header {
+    width: 299px;
+    height: 68px;
+    left: calc(50% - 299px/2 - 469.5px);
+    top: calc(50% - 68px/2 - 562.5px);
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 42px;
+    line-height: 160%;
+    display: flex;
+    align-items: center;
+    color: #1D1F22;
+}
 
 .cat_page_body {
 

@@ -1,33 +1,40 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import cl from './CategoryPanel.module.css';
+import { ClickConsumer } from '../../ClickContext';
 
 export default class CategoryPanel extends Component {
   render() {
     return (
-      <div className={cl.cat_panel}>
-        <NavLink
-          to={'/home'}
-          activeclassname={cl.active}
-          className={cl.cat_panel_link}
-        >
-          WOMEN
-        </NavLink>
-        <NavLink
-          to={'/'}
-          activeclassname={cl.active}
-          className={cl.cat_panel_link}
-        >
-          MEN
-        </NavLink>
-        <NavLink
-          to={'/'}
-          activeclassname={cl.active}
-          className={cl.cat_panel_link}
-        >
-          KIDS
-        </NavLink>
-      </div>
+      <ClickConsumer>
+        {(props) => {
+          const onClick = props;
+          return (
+            <div className={cl.cat_panel}>
+              <button
+                onClick={(e) => onClick(e)}
+                className={cl.cat_panel_link}
+                value="All"
+              >
+                All
+              </button>
+              <button
+                onClick={(e) => onClick(e)}
+                className={cl.cat_panel_link}
+                value="Tech"
+              >
+                Tech
+              </button>
+              <button
+                onClick={(e) => onClick(e)}
+                className={cl.cat_panel_link}
+                value="Clothes"
+              >
+                Clothes
+              </button>
+            </div>
+          );
+        }}
+      </ClickConsumer>
     );
   }
 }

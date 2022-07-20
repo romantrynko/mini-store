@@ -9,3 +9,14 @@
     padding: 0 10vw;
     box-sizing: border-box;
 }
+
+.header_icon_1 {
+    position: absolute;
+}
+
+.header_icon_2 {
+    position: relative;
+    top: 5px;
+    left: 8px;
+
+}
