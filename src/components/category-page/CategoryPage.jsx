@@ -25,7 +25,7 @@ export default function CategoryPage() {
   }, [data, category]);
 
   const onProductClick = (id) => {
-    location.pathname = `/${category}/!${id}`;
+    // location.pathname = `/${category}/!${id}`;
     navigate(`/${category}/${id}`);
   };
 

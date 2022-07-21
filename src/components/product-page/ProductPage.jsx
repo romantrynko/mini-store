@@ -36,8 +36,56 @@ export default function ProductPage() {
 
   return (
     item && (
-      <div className={cl.product_page_body}>
-        <ProductCard product={item} />;
+      <div className={cl.product_container}>
+        <div className={cl.product_gallery}>
+          <div className={cl.product_gallery_aside}>
+            <div>
+              <img src={item.gallery[0]} alt="" />
+            </div>
+            <div>
+              <img src={item.gallery[1]} alt="" />
+            </div>
+            <div>
+              <img src={item.gallery[2]} alt="" />
+            </div>
+          </div>
+          <div className={cl.product_gallery_main}>
+            <img src={item.gallery[3]} alt="" />
+          </div>
+        </div>
+
+        <div className={cl.product_info}>
+          <div className={cl.product_info_header}>
+            <div className={cl.product_info_header_brand}>{item.brand}</div>
+            <div className={cl.product_info_header_name}>{item.name}</div>
+          </div>
+          <div className={cl.product_info_size}>
+            <div className={cl.product_info_size_label}>size:</div>
+            <div className={cl.product_info_sizes}>
+              <div className={cl.size}>xs</div>
+              <div className={cl.size}>s</div>
+              <div className={cl.size}>m</div>
+              <div className={cl.size}>l</div>
+            </div>
+          </div>
+          <div className={cl.product_info_color}>
+            <div className={cl.product_info_color_label}>color:</div>
+            <div className={cl.product_info_colors}>
+              <div className={`${cl.gray} ${cl.color}`}></div>
+              <div className={`${cl.black} ${cl.color}`}></div>
+              <div className={`${cl.green} ${cl.color}`}></div>
+            </div>
+          </div>
+          <div className={cl.product_info_price}>
+            <div className={cl.product_info_color_label}>price:</div>
+            <div className={cl.price}>
+              <div>{item.prices[0].currency.symbol}</div>
+              <div>{item.prices[0].amount}</div>
+            </div>
+          </div>
+          <button className={cl.product_info_add_button}>add to cart</button>
+          <div className={cl.product_info_description}>{item.description}</div>
+        </div>
       </div>
     )
   );
