@@ -77,7 +77,7 @@ export default function ProductPage() {
                 {item.attributes[0].items.map((item) => {
                   return (
                     <div
-                      style={{ backgroundColor: `${item.value}` }}
+                      style={{ backgroundColor: `${item.displayValue}` }}
                       className={`${cl.color}`}
                     ></div>
                   );
