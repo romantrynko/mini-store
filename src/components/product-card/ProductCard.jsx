@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import cl from './ProductCard.module.css';
 
 export default function ProductCard({ product, onProductClick }) {

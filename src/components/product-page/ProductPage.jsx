@@ -24,8 +24,6 @@ export default function ProductPage() {
     }
   }, [location.pathname, data, setItem]);
 
-  console.log(item);
-
   if (loading)
     <h2 style={{ marginTop: '80px', textAlign: 'center' }}>Loading...</h2>;
 
