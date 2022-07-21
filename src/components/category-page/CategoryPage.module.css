@@ -1,9 +1,11 @@
 .cat_page {
     width: 90%;
     margin: 0 auto;
+    margin-top: 80px;
 }
 
 .cat_page_header {
+    text-transform: capitalize;
     width: 299px;
     height: 68px;
     left: calc(50% - 299px/2 - 469.5px);
@@ -19,7 +21,6 @@
 }
 
 .cat_page_body {
-
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;

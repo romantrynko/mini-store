@@ -26,17 +26,35 @@
     border: none;
     background: none;
     cursor: pointer;
+    text-decoration: none;
 }
 
-.cat_panel_link:active {
+.cat_panel_link_active {
+    width: fit-content;
+    height: 100%;
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 120%;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    text-transform: uppercase;
+    flex: none;
+    order: 0;
+    flex-grow: 0;
+    border: none;
+    background: none;
+    cursor: pointer;
+    text-decoration: none;
     color: #5ECE7B;
     border-bottom: 1px solid #5ECE7B;
     font-weight: bold;
-
 }
 
 .cat_panel_link:hover {
-    color: green;
-    border-bottom: 1px solid green;
+    color: #5ECE7B;
+    border-bottom: 1px solid #5ECE7B;
     font-weight: bold;
 }

@@ -1,64 +1,35 @@
 import React, { Component, useEffect, useState } from 'react';
 import cl from './CategoryPanel.module.css';
-import { ClickConsumer } from '../../ClickContext';
-import { useQuery } from '@apollo/client';
-import { Categories, Category } from '../../Queries';
+import { NavLink, useLocation } from 'react-router-dom';
 
 export default function CategoryPanel({ data }) {
-  // const { loading, error, data } = useQuery(Categories);
-  // console.log(data.categories);
-  // useEffect(() => {
-  //   if (data) setCategories(data);
-  //   console.log(categories);
-  // }, [data]);
+  const location = useLocation();
+  const [path, setPath] = useState();
+
+  useEffect(() => {
+    const path = location.pathname.substring(1);
+    console.log(path);
+    setPath(path);
+  }, [location.pathname, setPath]);
 
   return (
-    <ClickConsumer>
-      {(props) => {
-        const onClick = props;
+    <div className={cl.cat_panel}>
+      {data &&
+        data.categories.map((el, index) => {
+          const name = el.name;
 
-        return (
-          <div className={cl.cat_panel}>
-            {data &&
-              data.categories.map((el, index) => {
-                const name = el.name.toUpperCase();
-
-                return (
-                  <button
-                    onClick={(e) => onClick(e)}
-                    className={cl.cat_panel_link}
-                    value={el.name}
-                    key={index}
-                  >
-                    {name}
-                  </button>
-                );
-              })}
-
-            {/* <button
-              onClick={(e) => onClick(e)}
-              className={cl.cat_panel_link}
-              value="All"
+          return (
+            <NavLink
+              to={`${name}`}
+              className={
+                path !== name ? cl.cat_panel_link : cl.cat_panel_link_active
+              }
+              key={index}
             >
-              All
-            </button>
-            <button
-              onClick={(e) => onClick(e)}
-              className={cl.cat_panel_link}
-              value="Tech"
-            >
-              Tech
-            </button>
-            <button
-              onClick={(e) => onClick(e)}
-              className={cl.cat_panel_link}
-              value="Clothes"
-            >
-              Clothes
-            </button> */}
-          </div>
-        );
-      }}
-    </ClickConsumer>
+              {name}
+            </NavLink>
+          );
+        })}
+    </div>
   );
 }
