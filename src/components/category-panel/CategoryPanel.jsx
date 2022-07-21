@@ -8,7 +8,6 @@ export default function CategoryPanel({ data }) {
 
   useEffect(() => {
     const path = location.pathname.substring(1);
-    console.log(path);
     setPath(path);
   }, [location.pathname, setPath]);
 

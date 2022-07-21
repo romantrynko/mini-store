@@ -78,8 +78,8 @@ export const GET_CATEGORY = gql`
 `;
 
 export const GET_PRODUCT = gql`
-  query {
-    product {
+  query product($id: String!) {
+    product(id: $id) {
       id
       name
       inStock

@@ -1,11 +1,10 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import cl from './ProductCard.module.css';
 
-export default function ProductCard(props) {
-  const { product, onProductClick, index } = props;
+export default function ProductCard({ product, onProductClick }) {
 
   return (
-    <div className={cl.product_card} onClick={() => onProductClick(index)}>
+    <div className={cl.product_card} onClick={() => onProductClick(product.id)}>
       <div className={cl.product_card_body}>
         <div className={cl.product_card_image}>
           <img src={product.gallery[0]} alt="ok" />
