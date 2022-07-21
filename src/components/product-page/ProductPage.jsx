@@ -59,23 +59,32 @@ export default function ProductPage() {
             <div className={cl.product_info_header_brand}>{item.brand}</div>
             <div className={cl.product_info_header_name}>{item.name}</div>
           </div>
-          <div className={cl.product_info_size}>
-            <div className={cl.product_info_size_label}>size:</div>
-            <div className={cl.product_info_sizes}>
-              <div className={cl.size}>xs</div>
-              <div className={cl.size}>s</div>
-              <div className={cl.size}>m</div>
-              <div className={cl.size}>l</div>
+          {item.category === 'clothes' && (
+            <div className={cl.product_info_size}>
+              <div className={cl.product_info_size_label}>size:</div>
+              <div className={cl.product_info_sizes}>
+                {item.attributes[0].items.map((item) => {
+                  return <div className={cl.size}>{item.value}</div>;
+                })}
+              </div>
             </div>
-          </div>
-          <div className={cl.product_info_color}>
-            <div className={cl.product_info_color_label}>color:</div>
-            <div className={cl.product_info_colors}>
-              <div className={`${cl.gray} ${cl.color}`}></div>
-              <div className={`${cl.black} ${cl.color}`}></div>
-              <div className={`${cl.green} ${cl.color}`}></div>
+          )}
+
+          {item.category === 'tech' && (
+            <div className={cl.product_info_color}>
+              <div className={cl.product_info_color_label}>color:</div>
+              <div className={cl.product_info_colors}>
+                {item.attributes[0].items.map((item) => {
+                  return (
+                    <div
+                      style={{ backgroundColor: `${item.value}` }}
+                      className={`${cl.color}`}
+                    ></div>
+                  );
+                })}
+              </div>
             </div>
-          </div>
+          )}
           <div className={cl.product_info_price}>
             <div className={cl.product_info_color_label}>price:</div>
             <div className={cl.price}>
