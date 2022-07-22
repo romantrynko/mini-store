@@ -4,13 +4,15 @@ import { useQuery } from '@apollo/client';
 import { GET_PRODUCT } from '../../Queries';
 import ProductCard from '../product-card/ProductCard';
 import cl from '../product-page/ProductPage.module.css';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
+import { addToCart } from '../../actions/index';
 
 export default function ProductPage() {
   const location = useLocation();
   const [id, setId] = useState('');
-  const [color, setColor] = useState('');
+  const [selectedColor, setSelectedColor] = useState('');
+  const dispatch = useDispatch();
 
   const selectedCurrency = useSelector(
     (state) => state.currencyReducer.currency
@@ -42,6 +44,10 @@ export default function ProductPage() {
         Something went wrong!
       </h2>
     );
+
+  const handleAddToCart = () => {
+    dispatch(addToCart({ ...product, selectedColor }));
+  };
 
   return (
     product && (
@@ -90,10 +96,10 @@ export default function ProductPage() {
                 {product.attributes[0].items.map((item, index) => {
                   return (
                     <div
-                      onClick={() => setColor(item.displayValue)}
+                      onClick={() => setSelectedColor(item.displayValue)}
                       style={{ backgroundColor: `${item.displayValue}` }}
                       className={classNames(cl.color, {
-                        [cl.selected_color]: item.displayValue === color
+                        [cl.selected_color]: item.displayValue === selectedColor
                       })}
                       key={index}
                     ></div>
@@ -109,7 +115,12 @@ export default function ProductPage() {
               <div>{price.amount}</div>
             </div>
           </div>
-          <button className={cl.product_info_add_button}>add to cart</button>
+          <button
+            className={cl.product_info_add_button}
+            onClick={handleAddToCart}
+          >
+            add to cart
+          </button>
           <div className={cl.product_info_description}>
             {product.description}
           </div>

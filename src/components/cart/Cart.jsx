@@ -1,9 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
-export default class Cart extends Component {
-  render() {
-    return (
-      <div>Cart</div>
-    )
-  }
+export function Cart() {
+  const cart = useSelector(state => state.cartReducer.cart);
+  console.log(cart);
+  return <div>Cart</div>;
 }

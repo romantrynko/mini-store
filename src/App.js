@@ -8,24 +8,17 @@ import { useQuery } from '@apollo/client';
 import { GET_CATEGORIES } from './Queries';
 import ProductPage from './components/product-page/ProductPage';
 import { useEffect } from 'react';
+import { Cart } from './components/cart/Cart';
 
 function App() {
-  const {
-    data: categoriesData,
-    loading: categoriesLoading,
-    error: categoriesError
-  } = useQuery(GET_CATEGORIES);
-
-  if (categoriesLoading)
-    <div style={{ marginTop: '80px', textAlign: 'center' }}>Loading...</div>;
-
   return (
     <div className="App">
-      <Header data={categoriesData} />
+      <Header/>
 
       <Routes>
         <Route path="/:category" element={<CategoryPage />} />
         <Route path="/:category/:productId" element={<ProductPage />} />
+        <Route path="/cart" element={<Cart />} />
         <Route path="*" element={<Navigate to="/all" />} />
       </Routes>
     </div>

@@ -3,7 +3,7 @@ import { ADD_TO_CART, CHANGE_CURRENCY, REMOVE_FROM_CART } from '../action-types/
 export const addToCart = (product) => {
   return {
     type: ADD_TO_CART,
-    payload: product
+    payload: {product}
   };
 };
 
