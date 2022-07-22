@@ -3,6 +3,7 @@ import { GET_CURRENCIES } from '../../Queries';
 import { useQuery } from '@apollo/client';
 import { useDispatch } from 'react-redux';
 import { changeCurrency } from '../../actions';
+import cl from './Dropdown.module.css';
 
 export default function Dropdown() {
   const { data, loading, error } = useQuery(GET_CURRENCIES);
@@ -16,12 +17,12 @@ export default function Dropdown() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <select onChange={handleCurrency}>
+    <select className={cl.dropdown} onChange={handleCurrency}>
       {data &&
         data.currencies.map((item) => {
           return (
             <option value={item.label} key={item.label}>
-              {item.label}
+              {item.symbol}
             </option>
           );
         })}

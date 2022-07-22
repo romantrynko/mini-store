@@ -8,9 +8,11 @@ export default class SideMenu extends Component {
   render() {
     return (
       <div className={cl.menu}>
-        <Dropdown>$</Dropdown>
-        <Link to='/cart' className={cl.cart_icon}>
-          <img className={cl.cart_icon} src={cart} alt="cart" />
+        <Dropdown></Dropdown>
+        <Link to="/cart">
+          <div className={cl.cart_icon}>
+            <img src={cart} alt="cart" />
+          </div>
         </Link>
       </div>
     );

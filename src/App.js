@@ -8,12 +8,12 @@ import { useQuery } from '@apollo/client';
 import { GET_CATEGORIES } from './Queries';
 import ProductPage from './components/product-page/ProductPage';
 import { useEffect } from 'react';
-import { Cart } from './components/cart/Cart';
+import Cart from './components/cart/Cart';
 
 function App() {
   return (
     <div className="App">
-      <Header/>
+      <Header />
 
       <Routes>
         <Route path="/:category" element={<CategoryPage />} />
