@@ -1,4 +1,4 @@
-import { ADD_TO_CART, REMOVE_FROM_CART } from '../action-types/index';
+import { ADD_TO_CART, CHANGE_CURRENCY, REMOVE_FROM_CART } from '../action-types/index';
 
 export const addToCart = (product) => {
   return {
@@ -13,3 +13,10 @@ export const removeFromCart = (product) => {
     payload: product
   };
 };
+
+export const changeCurrency = (currency) => {
+  return {
+    type: CHANGE_CURRENCY,
+    payload: {currency}
+ }
+}

@@ -1,8 +1,13 @@
 import React from 'react';
+import { useSelector } from 'react-redux';
 import cl from './ProductCard.module.css';
 
 export default function ProductCard({ product, onProductClick }) {
 
+  const selectedCurrency = useSelector((state) => state.currencyReducer.currency);
+  
+  const price = product.prices.find(price => price.currency.label === selectedCurrency);
+  
   return (
     <div className={cl.product_card} onClick={() => onProductClick(product.id)}>
       <div className={cl.product_card_body}>
@@ -14,7 +19,7 @@ export default function ProductCard({ product, onProductClick }) {
             {product.name} {product.brand}
           </div>
           <div className={cl.product_card_info_price}>
-            {product.prices[0].currency.symbol} {product.prices[0].amount}
+            {price.currency.symbol} {price.amount}
           </div>
         </div>
       </div>

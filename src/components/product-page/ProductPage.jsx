@@ -4,25 +4,34 @@ import { useQuery } from '@apollo/client';
 import { GET_PRODUCT } from '../../Queries';
 import ProductCard from '../product-card/ProductCard';
 import cl from '../product-page/ProductPage.module.css';
+import { useSelector } from 'react-redux';
+import classNames from 'classnames';
 
 export default function ProductPage() {
   const location = useLocation();
   const [id, setId] = useState('');
+  const [color, setColor] = useState('');
+
+  const selectedCurrency = useSelector(
+    (state) => state.currencyReducer.currency
+  );
 
   const { data, loading, error, refetch } = useQuery(GET_PRODUCT, {
     variables: { id: id }
   });
-  const [item, setItem] = useState(data);
 
   useEffect(() => {
     const productId = location.pathname.split('/').pop();
     setId(productId);
+  }, [location.pathname]);
 
-    if (data) {
-      const { product } = data;
-      setItem(product);
-    }
-  }, [location.pathname, data, setItem]);
+  if (loading) return <div>Loading...</div>;
+
+  const { product } = data;
+
+  const price = product.prices.find(
+    (price) => price.currency.label === selectedCurrency
+  );
 
   if (loading)
     <h2 style={{ marginTop: '80px', textAlign: 'center' }}>Loading...</h2>;
@@ -35,50 +44,58 @@ export default function ProductPage() {
     );
 
   return (
-    item && (
+    product && (
       <div className={cl.product_container}>
         <div className={cl.product_gallery}>
           <div className={cl.product_gallery_aside}>
             <div>
-              <img src={item.gallery[0]} alt="" />
+              <img src={product.gallery[0]} alt="" />
             </div>
             <div>
-              <img src={item.gallery[1]} alt="" />
+              <img src={product.gallery[1]} alt="" />
             </div>
             <div>
-              <img src={item.gallery[2]} alt="" />
+              <img src={product.gallery[2]} alt="" />
             </div>
           </div>
           <div className={cl.product_gallery_main}>
-            <img src={item.gallery[3]} alt="" />
+            <img src={product.gallery[3]} alt="" />
           </div>
         </div>
 
         <div className={cl.product_info}>
           <div className={cl.product_info_header}>
-            <div className={cl.product_info_header_brand}>{item.brand}</div>
-            <div className={cl.product_info_header_name}>{item.name}</div>
+            <div className={cl.product_info_header_brand}>{product.brand}</div>
+            <div className={cl.product_info_header_name}>{product.name}</div>
           </div>
-          {item.category === 'clothes' && (
+          {product.category === 'clothes' && (
             <div className={cl.product_info_size}>
               <div className={cl.product_info_size_label}>size:</div>
               <div className={cl.product_info_sizes}>
-                {item.attributes[0].items.map((item) => {
-                  return <div className={cl.size}>{item.value}</div>;
+                {product.attributes[0].items.map((item) => {
+                  return (
+                    <div className={cl.size} key={item.value}>
+                      {item.value}
+                    </div>
+                  );
                 })}
               </div>
             </div>
           )}
 
-          {item.category === 'tech' && (
+          {product.category === 'tech' && (
             <div className={cl.product_info_color}>
               <div className={cl.product_info_color_label}>color:</div>
               <div className={cl.product_info_colors}>
-                {item.attributes[0].items.map((item) => {
+                {product.attributes[0].items.map((item, index) => {
                   return (
                     <div
+                      onClick={() => setColor(item.displayValue)}
                       style={{ backgroundColor: `${item.displayValue}` }}
-                      className={`${cl.color}`}
+                      className={classNames(cl.color, {
+                        [cl.selected_color]: item.displayValue === color
+                      })}
+                      key={index}
                     ></div>
                   );
                 })}
@@ -88,12 +105,14 @@ export default function ProductPage() {
           <div className={cl.product_info_price}>
             <div className={cl.product_info_color_label}>price:</div>
             <div className={cl.price}>
-              <div>{item.prices[0].currency.symbol}</div>
-              <div>{item.prices[0].amount}</div>
+              <div>{price.currency.symbol}</div>
+              <div>{price.amount}</div>
             </div>
           </div>
           <button className={cl.product_info_add_button}>add to cart</button>
-          <div className={cl.product_info_description}>{item.description}</div>
+          <div className={cl.product_info_description}>
+            {product.description}
+          </div>
         </div>
       </div>
     )
