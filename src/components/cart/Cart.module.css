@@ -248,3 +248,10 @@
 .delete_button:not(:hover) {
     transition-duration: 200ms;
 }
+
+.cart_empty {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}

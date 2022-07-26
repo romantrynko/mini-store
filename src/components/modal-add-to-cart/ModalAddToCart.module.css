@@ -4,8 +4,9 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    background: white;
-    opacity: 70%;
+    color: white;
+    background: rgb(116, 116, 116);
+    opacity: 85%;
     border-radius: 35px;
 }
 
