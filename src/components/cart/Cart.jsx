@@ -32,6 +32,9 @@ export default function Cart({ modal }) {
           const price = product.prices.find(
             (price) => price.currency.label === selectedCurrency
           );
+
+          const totalPrice = price.amount * product.amount;
+
           return (
             <div className={cl.product_container}>
               <div className={cl.product_info}>
@@ -55,6 +58,11 @@ export default function Cart({ modal }) {
                   <div className={cl.price}>
                     <div>{price.currency.symbol}</div>
                     <div>{price.amount}</div>
+                  </div>
+                  <div className={cl.product_info_color_label}>total:</div>
+                  <div className={cl.price}>
+                    <div>{price.currency.symbol}</div>
+                    <div>{totalPrice}</div>
                   </div>
                 </div>
                 {product.category === 'clothes' && (
