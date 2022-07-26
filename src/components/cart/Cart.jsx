@@ -59,33 +59,15 @@ export default function Cart() {
                 <div className={cl.product_info_color}>
                   <div className={cl.product_info_color_label}>color:</div>
                   <div className={cl.product_info_colors}>
-                    {product.attributes[0].items.map((item, index) => {
-                      const color = item.displayValue === product.selectedColor;
-                      console.log(color);
-                      if (color) {
-                        return (
-                          <div
-                            // onClick={() => setSelectedColor(item.displayValue)}
-                            // style={{ backgroundColor: `${item.displayValue}` }}
-                            // className={classNames(cl.color, {
-                            //   [cl.selected_color]: item.displayValue === product.selectedColor
-                            // })}
-                            className={cl.color}
-                            key={index}
-                          ></div>
-                        );
-                      }
-                    })}
+                    <div
+                      className={cl.color}
+                      style={{
+                        background: `${product.selectedColor}`
+                      }}
+                    ></div>
                   </div>
                 </div>
               )}
-
-              {/* <button
-            className={cl.product_info_add_button}
-            // onClick={handleAddToCart}
-          >
-            add to cart
-          </button> */}
             </div>
 
             <div className={cl.product_gallery}>

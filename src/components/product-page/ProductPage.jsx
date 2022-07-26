@@ -8,10 +8,11 @@ import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { addToCart } from '../../actions/index';
 
-export default function ProductPage({modal}) {
+export default function ProductPage({ modal }) {
   const location = useLocation();
   const [id, setId] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
+  const [selectedSize, setSelectedSize] = useState('');
   const dispatch = useDispatch();
 
   const selectedCurrency = useSelector(
@@ -46,8 +47,13 @@ export default function ProductPage({modal}) {
     );
 
   const handleAddToCart = () => {
-    modal()
-    dispatch(addToCart({ ...product, selectedColor }));
+    modal();
+
+    if (selectedColor) {
+      dispatch(addToCart({ ...product, selectedColor }));
+    } else if (selectedSize) {
+      dispatch(addToCart({ ...product, selectedSize }));
+    }
   };
 
   return (
@@ -81,7 +87,11 @@ export default function ProductPage({modal}) {
               <div className={cl.product_info_sizes}>
                 {product.attributes[0].items.map((item) => {
                   return (
-                    <div className={cl.size} key={item.value}>
+                    <div
+                      onClick={() => setSelectedSize(item.displayValue)}
+                      className={cl.size}
+                      key={item.value}
+                    >
                       {item.value}
                     </div>
                   );
