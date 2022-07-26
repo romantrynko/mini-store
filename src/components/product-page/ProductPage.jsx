@@ -47,12 +47,17 @@ export default function ProductPage({ modal }) {
     );
 
   const handleAddToCart = () => {
-    modal();
+    modal('Product added to cart');
 
+    if (!selectedColor && !selectedSize) {
+      modal(`Please chose ${product.attributes[0].name}`);
+    }
     if (selectedColor) {
       dispatch(addToCart({ ...product, selectedColor }));
+      setSelectedColor('');
     } else if (selectedSize) {
       dispatch(addToCart({ ...product, selectedSize }));
+      setSelectedSize('');
     }
   };
 

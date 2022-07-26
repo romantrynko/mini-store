@@ -13,12 +13,15 @@ import ModalAddToCart from './components/modal-add-to-cart/ModalAddToCart';
 
 function App() {
   const [showModal, setShowModal] = useState(false);
+  const [message, setMessage] = useState('');
 
-  const modal = () => {
+  const modal = (message) => {
     setShowModal(true);
+    setMessage(message);
 
     setTimeout(() => {
       setShowModal(false);
+      setMessage('');
     }, 1500);
   };
 
@@ -26,7 +29,7 @@ function App() {
     <div className="App">
       <Header />
       <div className={showModal ? 'modal_hide' : 'modal_show'}>
-        <ModalAddToCart />
+        <ModalAddToCart message={message} />
       </div>
       <Routes>
         <Route path="/:category" element={<CategoryPage />} />
