@@ -94,7 +94,9 @@ export default function ProductPage({ modal }) {
                   return (
                     <div
                       onClick={() => setSelectedSize(item.displayValue)}
-                      className={cl.size}
+                      className={classNames(cl.size, {
+                        [cl.selected_size]: item.displayValue === selectedSize
+                      })}
                       key={item.value}
                     >
                       {item.value}
