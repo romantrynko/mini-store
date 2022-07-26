@@ -1,7 +1,6 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import cl from './Cart.module.css';
-import { classNames } from 'classnames';
 
 export default function Cart() {
   const cart = useSelector((state) => state.cartReducer.cart);
@@ -10,8 +9,7 @@ export default function Cart() {
     (state) => state.currencyReducer.currency
   );
 
-  console.log(cart);
-
+  
   return (
     <div>
       <h1>CART</h1>
@@ -44,13 +42,7 @@ export default function Cart() {
                 <div className={cl.product_info_size}>
                   <div className={cl.product_info_size_label}>size:</div>
                   <div className={cl.product_info_sizes}>
-                    {product.attributes[0].items.map((item) => {
-                      return (
-                        <div className={cl.size} key={item.value}>
-                          {item.value}
-                        </div>
-                      );
-                    })}
+                    <div className={cl.size}>{product.selectedSize}</div>
                   </div>
                 </div>
               )}
