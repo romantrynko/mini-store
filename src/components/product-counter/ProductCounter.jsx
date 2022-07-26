@@ -1,7 +1,7 @@
 import React from 'react';
 import cl from './ProductCounter.module.css';
 import { useDispatch } from 'react-redux';
-import { increase } from '../../actions';
+import { increase, totalProductsCount } from '../../actions';
 import { decrease } from '../../actions/index';
 
 export default function ProductCounter({ product }) {
@@ -9,10 +9,12 @@ export default function ProductCounter({ product }) {
 
   const increaseCount = (id) => {
     dispatch(increase(id));
+    dispatch(totalProductsCount());
   };
 
   const decreaseCount = (id) => {
     dispatch(decrease(id));
+    dispatch(totalProductsCount());
   };
 
   return (

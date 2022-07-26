@@ -3,7 +3,8 @@ import {
   CHANGE_CURRENCY,
   DECREASE_AMOUNT,
   INCREASE_AMOUNT,
-  REMOVE_FROM_CART
+  REMOVE_FROM_CART,
+  TOTAL_PRODUCTS_COUNT
 } from '../action-types/index';
 
 export const addToCart = (product) => {
@@ -38,5 +39,11 @@ export const decrease = (id) => {
   return {
     type: DECREASE_AMOUNT,
     payload: { id }
+  };
+};
+
+export const totalProductsCount = () => {
+  return {
+    type: TOTAL_PRODUCTS_COUNT
   };
 };

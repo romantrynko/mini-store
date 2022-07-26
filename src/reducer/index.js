@@ -3,7 +3,8 @@ import {
   REMOVE_FROM_CART,
   CHANGE_CURRENCY,
   INCREASE_AMOUNT,
-  DECREASE_AMOUNT
+  DECREASE_AMOUNT,
+  TOTAL_PRODUCTS_COUNT
 } from '../action-types/index';
 import { combineReducers } from 'redux';
 
@@ -26,7 +27,8 @@ const currencyReducer = (state = defaultStore, action) => {
 };
 
 const cartStore = {
-  cart: []
+  cart: [],
+  totalProducts: 0
 };
 
 const cartReducer = (state = cartStore, action) => {
@@ -36,7 +38,6 @@ const cartReducer = (state = cartStore, action) => {
         const duplicateProduct = state.cart.find(
           (product) => product.id === action.payload.product.id
         );
-        console.log(duplicateProduct);
 
         if (!duplicateProduct) {
           return {
@@ -64,6 +65,7 @@ const cartReducer = (state = cartStore, action) => {
         cart: [...state.cart, action.payload.product]
       };
     }
+      
     case REMOVE_FROM_CART:
       return {
         ...state,
@@ -94,6 +96,15 @@ const cartReducer = (state = cartStore, action) => {
       return {
         ...state,
         cart: [...state.cart]
+      };
+
+    case TOTAL_PRODUCTS_COUNT:
+      const totalCount = state.cart.reduce((a, b) => a + b.amount, 0);
+      console.log(totalCount);
+      
+      return {
+        ...state,
+        totalProducts: totalCount
       };
 
     default:

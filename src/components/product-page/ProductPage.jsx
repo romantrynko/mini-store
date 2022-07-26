@@ -5,7 +5,7 @@ import { GET_PRODUCT } from '../../Queries';
 import cl from '../product-page/ProductPage.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
-import { addToCart } from '../../actions/index';
+import { addToCart, totalProductsCount } from '../../actions/index';
 
 export default function ProductPage({ modal }) {
   const location = useLocation();
@@ -60,6 +60,7 @@ export default function ProductPage({ modal }) {
       dispatch(addToCart({ ...product, amount: 1, selectedSize }));
       setSelectedSize('');
     }
+    dispatch(totalProductsCount());
   };
 
   return (

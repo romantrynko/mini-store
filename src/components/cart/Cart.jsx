@@ -1,6 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { removeFromCart } from '../../actions';
+import { removeFromCart, totalProductsCount } from '../../actions';
 import ProductCounter from '../product-counter/ProductCounter';
 import cl from './Cart.module.css';
 
@@ -15,6 +15,7 @@ export default function Cart({ modal }) {
   const deleteHandler = (id) => {
     dispatch(removeFromCart(id));
     modal('Product removed');
+    dispatch(totalProductsCount());
   };
 
   return (
@@ -28,7 +29,7 @@ export default function Cart({ modal }) {
           <h1>Cart is empty</h1>
         </div>
       ) : (
-        cart.map((product) => {
+        cart.map((product,index) => {
           const price = product.prices.find(
             (price) => price.currency.label === selectedCurrency
           );
@@ -36,7 +37,7 @@ export default function Cart({ modal }) {
           const totalPrice = price.amount * product.amount;
 
           return (
-            <div className={cl.product_container}>
+            <div className={cl.product_container} key={index}>
               <div className={cl.product_info}>
                 <button
                   onClick={() => deleteHandler(product.id)}
