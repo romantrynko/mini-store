@@ -223,6 +223,28 @@
 }
 
 .selected_color {
-    opacity: 100%;
     transform: scale(1.05);
+}
+
+.delete_button {
+    background: none;
+    border: none;
+    margin-bottom: 2rem;
+    font-size: 20px;
+}
+
+.delete_button:hover {
+    transform: scale(1.2);
+    color: red;
+    transition-duration: 300ms;
+    cursor: pointer;
+}
+
+.delete_button:active {
+    transform: scale(0.95);
+
+}
+
+.delete_button:not(:hover) {
+    transition-duration: 200ms;
 }

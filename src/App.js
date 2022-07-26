@@ -37,7 +37,7 @@ function App() {
           path="/:category/:productId"
           element={<ProductPage modal={modal} />}
         />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/cart" element={<Cart modal={modal} />} />
         <Route path="*" element={<Navigate to="/all" />} />
       </Routes>
     </div>

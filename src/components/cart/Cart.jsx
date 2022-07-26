@@ -1,18 +1,26 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
+import { removeFromCart } from '../../actions';
 import cl from './Cart.module.css';
 
-export default function Cart() {
+export default function Cart({modal}) {
   const cart = useSelector((state) => state.cartReducer.cart);
+  const dispatch = useDispatch();
 
   const selectedCurrency = useSelector(
     (state) => state.currencyReducer.currency
   );
 
-  
+  const deleteHandler = (id) => {
+    dispatch(removeFromCart(id));
+    modal('Product removed')
+  };
+
   return (
     <div>
-      <h1>CART</h1>
+      <div style={{ height: '200px' }}>
+        <h1>CART</h1>
+      </div>
       {cart.map((product) => {
         const price = product.prices.find(
           (price) => price.currency.label === selectedCurrency
@@ -20,9 +28,13 @@ export default function Cart() {
         return (
           <div className={cl.product_container}>
             <div className={cl.product_info}>
-              <div style={{ height: '200px' }}>
-                <h1>CART</h1>
-              </div>
+              <button
+                onClick={() => deleteHandler(product.id)}
+                className={cl.delete_button}
+              >
+                &#10006;
+              </button>
+
               <div className={cl.product_info_header}>
                 <div className={cl.product_info_header_brand}>
                   {product.brand}

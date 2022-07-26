@@ -47,10 +47,12 @@ export default function ProductPage({ modal }) {
     );
 
   const handleAddToCart = () => {
+    const productType = product.attributes[0].name.toLowerCase();
+
     modal('Product added to cart');
 
     if (!selectedColor && !selectedSize) {
-      modal(`Please chose ${product.attributes[0].name}`);
+      modal(`Please choose ${productType}`);
     }
     if (selectedColor) {
       dispatch(addToCart({ ...product, selectedColor }));
