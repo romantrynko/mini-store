@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
 import { GET_PRODUCT } from '../../Queries';
-import ProductCard from '../product-card/ProductCard';
 import cl from '../product-page/ProductPage.module.css';
 import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
@@ -55,10 +54,10 @@ export default function ProductPage({ modal }) {
       modal(`Please choose ${productType}`);
     }
     if (selectedColor) {
-      dispatch(addToCart({ ...product, selectedColor }));
+      dispatch(addToCart({ ...product, amount: 1, selectedColor }));
       setSelectedColor('');
     } else if (selectedSize) {
-      dispatch(addToCart({ ...product, selectedSize }));
+      dispatch(addToCart({ ...product, amount: 1, selectedSize }));
       setSelectedSize('');
     }
   };

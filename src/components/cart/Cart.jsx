@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { removeFromCart } from '../../actions';
+import ProductCounter from '../product-counter/ProductCounter';
 import cl from './Cart.module.css';
 
 export default function Cart({ modal }) {
@@ -79,6 +80,8 @@ export default function Cart({ modal }) {
                   </div>
                 )}
               </div>
+
+              <ProductCounter product={product} />
 
               <div className={cl.product_gallery}>
                 <div className={cl.product_gallery_aside}>

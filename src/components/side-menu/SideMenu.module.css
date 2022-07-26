@@ -15,6 +15,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
 }
 
 .cart_icon img {
@@ -35,4 +36,19 @@
 
 .cart_icon:not(:hover) {
     transition-duration: 300ms;
+}
+
+.cart_amount {
+    right: 0px;
+    top: 2px;
+    position: absolute;
+    color: white;
+    z-index: 3;
+    background: red;
+    width: 13px;
+    height: 13px;
+    font-size: 11px;
+    border-radius: 50%;
+    text-align: center;
+    text-decoration: none;
 }
