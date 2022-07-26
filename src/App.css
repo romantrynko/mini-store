@@ -4,3 +4,11 @@
   flex-direction: column;
   font-family: 'Raleway';
 }
+
+.modal_show {
+  display: none;
+}
+
+.modal_hide {
+  display: flex;
+}

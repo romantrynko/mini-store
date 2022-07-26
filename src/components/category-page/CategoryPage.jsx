@@ -7,7 +7,6 @@ import { useQuery } from '@apollo/client';
 
 export default function CategoryPage() {
   const [products, setProducts] = useState([]);
-  const location = useLocation();
   const navigate = useNavigate();
 
   const params = useParams();

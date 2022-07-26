@@ -8,7 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import classNames from 'classnames';
 import { addToCart } from '../../actions/index';
 
-export default function ProductPage() {
+export default function ProductPage({modal}) {
   const location = useLocation();
   const [id, setId] = useState('');
   const [selectedColor, setSelectedColor] = useState('');
@@ -46,6 +46,7 @@ export default function ProductPage() {
     );
 
   const handleAddToCart = () => {
+    modal()
     dispatch(addToCart({ ...product, selectedColor }));
   };
 
