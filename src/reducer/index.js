@@ -100,7 +100,6 @@ const cartReducer = (state = cartStore, action) => {
 
     case TOTAL_PRODUCTS_COUNT:
       const totalCount = state.cart.reduce((a, b) => a + b.amount, 0);
-      console.log(totalCount);
       
       return {
         ...state,

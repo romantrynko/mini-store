@@ -45,10 +45,11 @@
     color: white;
     z-index: 3;
     background: red;
-    width: 13px;
-    height: 13px;
+    width: 15px;
+    height: 15px;
     font-size: 11px;
     border-radius: 50%;
     text-align: center;
     text-decoration: none;
+    font-weight: 900;
 }

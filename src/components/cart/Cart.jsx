@@ -29,7 +29,7 @@ export default function Cart({ modal }) {
           <h1>Cart is empty</h1>
         </div>
       ) : (
-        cart.map((product,index) => {
+        cart.map((product, index) => {
           const price = product.prices.find(
             (price) => price.currency.label === selectedCurrency
           );
@@ -66,16 +66,15 @@ export default function Cart({ modal }) {
                     <div>{totalPrice}</div>
                   </div>
                 </div>
-                {product.category === 'clothes' && (
+
+                {product.category === 'clothes' ? (
                   <div className={cl.product_info_size}>
                     <div className={cl.product_info_size_label}>size:</div>
                     <div className={cl.product_info_sizes}>
                       <div className={cl.size}>{product.selectedSize}</div>
                     </div>
                   </div>
-                )}
-
-                {product.category === 'tech' && (
+                ) : (
                   <div className={cl.product_info_color}>
                     <div className={cl.product_info_color_label}>color:</div>
                     <div className={cl.product_info_colors}>
